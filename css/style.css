@@ -1,0 +1,174 @@
+* {
+  vertical-align: baseline;
+  font-weight: inherit;
+  font-family: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  border: 0 none;
+  outline: 0;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: hsl(223deg, 19%, 93%);
+  font-family: "Rubik", sans-serif;
+  font-size: 16px;
+  height: 100%;
+}
+body .container {
+  width: 1000px;
+  min-height: 100vh;
+  margin: 20px auto 0 auto;
+  display: flex;
+  flex-direction: column;
+  flex-flow: column;
+  justify-content: space-between;
+}
+body .comment-block {
+  max-height: 80%;
+  display: flex;
+  flex-direction: column;
+  overflow: scroll;
+}
+body .comment-section {
+  padding: 20px;
+  margin: 10px auto;
+  display: flex;
+  background-color: hsl(228deg, 33%, 97%);
+  border-radius: 10px;
+  width: 70%;
+  min-height: 150px;
+}
+body .card-scoring {
+  width: 12%;
+  display: flex;
+  align-items: center;
+}
+body .card-scoring__counter {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0 auto;
+  width: 50%;
+  height: 50%;
+  padding: 10px 0;
+  background-color: hsl(223deg, 19%, 93%);
+  color: hsl(238deg, 40%, 52%);
+  font-weight: 500;
+  border-radius: 10%;
+}
+body .card-scoring__counter button {
+  background-color: transparent;
+  color: hsl(211deg, 10%, 45%);
+}
+body .card-scoring__counter button:hover {
+  cursor: pointer;
+  color: hsl(238deg, 40%, 52%);
+}
+body .card-scoring__counter span {
+  text-align: center;
+}
+body .card-main {
+  width: 85%;
+}
+body .card-main__header {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 1.5fr 3fr;
+}
+body .card-main .info {
+  display: flex;
+  align-items: center;
+}
+body .card-main .avatar {
+  height: 50px;
+  margin-top: 20px;
+}
+body .card-main .name {
+  display: inline-block;
+  margin-left: 10px;
+  margin-top: 20px;
+  font-weight: 500;
+}
+body .card-main .created-at {
+  display: inline-block;
+  margin: 20px 10px 10px 10px;
+  color: hsl(211deg, 10%, 45%);
+}
+body .card-main .reply-btn {
+  margin-top: 25px;
+  margin-left: 75%;
+  background-color: transparent;
+  height: 20px;
+  color: hsl(238deg, 40%, 52%);
+  font-weight: 500;
+}
+body .card-main .reply-btn:hover {
+  cursor: pointer;
+}
+body .card-main .reply-btn::before {
+  content: url(../images/icon-reply.svg);
+  margin-right: 5px;
+}
+body .card-main__comment {
+  margin-top: 5px;
+  padding: 10px;
+  color: hsl(211deg, 10%, 45%);
+}
+body .reply-section {
+  position: relative;
+  margin-left: 184px;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+body .reply-section .reply-comment {
+  width: 90%;
+}
+body .reply-section::before {
+  content: "";
+  position: absolute;
+  margin-top: 20px;
+  height: 90%;
+  width: 2px;
+  background-color: hsl(211deg, 10%, 45%);
+  opacity: 0.3;
+}
+body .form-block {
+  margin: 20px auto;
+  display: flex;
+  background-color: hsl(228deg, 33%, 97%);
+  border-radius: 10px;
+  width: 80%;
+  height: 130px;
+}
+body .form-block__avatar {
+  height: 50px;
+  margin-left: 29px;
+  margin-top: 22px;
+}
+body .form-block__comment {
+  margin: 15px 2px 15px 20px;
+  display: block;
+  width: 68%;
+  height: 70%;
+  padding: 5px;
+  border: 1px solid hsl(223deg, 19%, 93%);
+  border-radius: 10px;
+  resize: none;
+  color: hsl(211deg, 10%, 45%);
+}
+body .form-block__send-btn {
+  margin: 18px auto;
+  height: 40px;
+  width: 80px;
+  background-color: hsl(238deg, 40%, 52%);
+  color: hsl(228deg, 33%, 97%);
+  border-radius: 10px;
+}
+body .form-block__send-btn:hover {
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=style.css.map */

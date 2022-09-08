@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="stylesheet" href="./css/style.css">
+
+  <title>Frontend Mentor | Interactive comments section</title>
+  <style>
+    .attribution {
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .attribution a {
+      color: hsl(227, 4%, 57%);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="comment-block">
+      <div class="card">
+        <div class="comment-section">
+          <div class="card-scoring">
+            <div class="card-scoring__counter">
+              <button class="plus-btn">+</button>
+              <span class="score">12</span>
+              <button class="minus-btn">-</button>
+            </div>
+          </div>
+          <div class="card-main">
+            <div class="card-main__header">
+              <img class="avatar" src="./images/avatars/image-amyrobson.png" alt="avatar">
+              <span class="name">amyrobson</span>
+              <span class="created-at">1 month ago</span>
+              <button class="reply-btn">Reply</button>
+            </div>
+            <p class="card-main__comment">Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные
+              тексты.</p>
+          </div>
+        </div>
+        <div class="reply-section">
+
+        </div>
+
+      </div>
+    </div>
+    <div class="form-block">
+      <img src="/images/avatars/image-juliusomo.png" alt="avatar" class="form-block__avatar">
+      <textarea class="form-block__comment" name="text" id="" placeholder="Add a comment..."></textarea>
+      <button class="form-block__send-btn">Send</button>
+    </div>
+  </div>
+  <a href=""></a>
+  <!-- Pull dynamic content from the data.json file -->
+
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>.
+    Coded by <a href="#">Your Name Here</a>.
+  </div>
+  <script src="./js/data.js"></script>
+  <script src="./js/script.js"></script>
+
+</body>
+
+</html>
