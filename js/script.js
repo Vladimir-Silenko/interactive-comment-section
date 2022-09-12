@@ -70,8 +70,17 @@ document.querySelector('.form-block__send-btn').onclick = () => {
   comment.querySelector('.purple-btn').innerText = 'Edit';
   comment.querySelector('.card-main__header').style = 'display: grid; grid-template-columns: 0.5fr 1fr 1.5fr 2fr 1fr;'
   document.querySelector('.comment-block').appendChild(comment);
-  comment.querySelector('.card-main__header').appendChild(deleteBtn)
-  scoreCounter()
+  comment.querySelector('.card-main__header').appendChild(deleteBtn);
+  scoreCounter();
+  document.querySelector('.delete-btn').addEventListener('click', showModal);
+}
+//show modal
+let modal = document.querySelector('.modal')
+function showModal() {
+  modal.style.display = 'block'
+}
+document.querySelector('.no').onclick = () => {
+  modal.style.display = 'none'
 }
 // -----send reply-----
 function replyTo() {
@@ -82,8 +91,6 @@ function replyTo() {
     replyBtn.onclick = () => document.querySelector('.form-block__comment').innerHTML = name;
   })
 }
-replyTo()
-
 
 //-----счетччик рейтинга комментариев-----
 function scoreCounter() {
@@ -107,6 +114,7 @@ function scoreCounter() {
   function render(counter, scoreElement) { scoreElement.innerHTML = counter };
 }
 scoreCounter()
+replyTo()
 
 
 
