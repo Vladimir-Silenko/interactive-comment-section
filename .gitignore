@@ -16,6 +16,5 @@
 .prettierignore
 *.md
 data.json
-scss/
 design/
 .vscode/

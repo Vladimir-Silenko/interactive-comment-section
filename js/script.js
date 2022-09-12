@@ -3,7 +3,7 @@ function showComment(arr) {
   let commentList = ''
   let replyList = ''
   arr = arr.map(({ score, user, createdAt, content, replies }) => {
-    replies.forEach(reply => {
+    replies = replies.map(reply => {
       replyList +=
         `
           <div class="comment-section reply-comment">
@@ -19,7 +19,7 @@ function showComment(arr) {
               <img class="avatar" src="${reply.user.image.png}" alt="avatar">
               <span class="name">${reply.user.username}</span>
               <span class="created-at">${reply.createdAt}</span>
-              <button class="reply-btn">Reply</button>
+              <button class="purple-btn reply-btn">Reply</button>
             </div>
             <p class="card-main__comment">${reply.content}</p>
           </div>
@@ -42,7 +42,7 @@ function showComment(arr) {
                   <img class="avatar" src="${user.image.png}" alt="avatar">
                   <span class="name">${user.username}</span>
                   <span class="created-at">${createdAt}</span>
-                  <button class="reply-btn">Reply</button>
+                  <button class="purple-btn reply-btn">Reply</button>
                 </div>
                 <p class="card-main__comment">${content}</p>
               </div>
@@ -56,27 +56,23 @@ function showComment(arr) {
 showComment(comments)
 //-----send comment-----
 document.querySelector('.form-block__send-btn').onclick = () => {
-  let content = document.querySelector('.form-block__comment').value
-  let comment = {
-    "id": 5,
-    "content": content,
-    "createdAt": 'today',
-    "score": 0,
-    "user": {
-      "image": {
-        "png": "./images/avatars/image-juliusomo.png",
-        "webp": "./images/avatars/image-juliusomo.webp"
-      },
-      "username": "juliusomo"
-    },
-    "replies": []
-  }
-  comments.push(comment)
-  showComment(comments)
+  let content = document.querySelector('.form-block__comment').value;
+  let comment = document.querySelector('.card').cloneNode(true);
+  let deleteBtn = document.querySelector('.purple-btn').cloneNode(true)
+  deleteBtn.innerText = 'Delete'
+  deleteBtn.classList.add('delete-btn')
+  comment.querySelector('.score').innerHTML = 0;
+  comment.querySelector('.avatar').src = currentUser.image.png;
+  comment.querySelector('.name').innerText = currentUser.username;
+  comment.querySelector('.card-main__comment').innerText = content;
+  comment.querySelector('.purple-btn').classList.remove('reply-btn');
+  comment.querySelector('.purple-btn').classList.add('edit-btn');
+  comment.querySelector('.purple-btn').innerText = 'Edit';
+  comment.querySelector('.card-main__header').style = 'display: grid; grid-template-columns: 0.5fr 1fr 1.5fr 2fr 1fr;'
+  document.querySelector('.comment-block').appendChild(comment);
+  comment.querySelector('.card-main__header').appendChild(deleteBtn)
   scoreCounter()
 }
-
-
 // -----send reply-----
 function replyTo() {
   let card = document.querySelectorAll('.card-main__header')

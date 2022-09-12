@@ -96,7 +96,7 @@ body .card-main .created-at {
   margin: 20px 10px 10px 10px;
   color: hsl(211deg, 10%, 45%);
 }
-body .card-main .reply-btn {
+body .card-main .purple-btn {
   margin-top: 25px;
   margin-left: 75%;
   background-color: transparent;
@@ -104,11 +104,31 @@ body .card-main .reply-btn {
   color: hsl(238deg, 40%, 52%);
   font-weight: 500;
 }
-body .card-main .reply-btn:hover {
+body .card-main .delete-btn {
+  background-color: transparent;
+  height: 20px;
+  color: hsl(358deg, 79%, 66%);
+  font-weight: 500;
+}
+body .card-main .purple-btn:hover {
   cursor: pointer;
 }
 body .card-main .reply-btn::before {
   content: url(../images/icon-reply.svg);
+  margin-right: 5px;
+}
+body .card-main .edit-btn {
+  margin-left: 50px;
+}
+body .card-main .delete-btn {
+  margin-left: 30px;
+}
+body .card-main .edit-btn::before {
+  content: url(../images/icon-edit.svg);
+  margin-right: 5px;
+}
+body .card-main .delete-btn:before {
+  content: url(../images/icon-delete.svg);
   margin-right: 5px;
 }
 body .card-main__comment {

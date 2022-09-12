@@ -1,0 +1,218 @@
+@import 'vars.scss';
+@import 'reset.scss';
+
+body {
+    background-color: $Light-gray ;
+    font-family: 'Rubik', sans-serif;
+    font-size: 16px;
+    height: 100%;
+
+    .container {
+        width: 1000px;
+        min-height: 100vh;
+        margin: 20px auto 0 auto;
+        display: flex;
+        flex-direction: column;
+        flex-flow: column;
+
+        justify-content: space-between;
+    }
+
+    .comment-block {
+        max-height: 80%;
+        display: flex;
+        flex-direction: column;
+        overflow: scroll;
+        // flex: 1 1 auto;
+    }
+
+    .comment-section {
+        padding: 20px;
+        margin: 10px auto;
+        display: flex;
+        background-color: $Very-light-gray;
+        border-radius: 10px;
+        width: 70%;
+        min-height: 150px;
+    }
+
+    .card-scoring {
+        width: 12%;
+        display: flex;
+        align-items: center;
+
+        &__counter {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: 0 auto;
+            width: 50%;
+            height: 50%;
+            padding: 10px 0;
+            background-color: $Light-gray;
+            color: $Moderate-blue;
+            font-weight: 500;
+            border-radius: 10%;
+
+            button {
+                background-color: transparent;
+                color: $Grayish-Blue;
+            }
+
+            button:hover {
+                cursor: pointer;
+                color: $Moderate-blue;
+            }
+
+            span {
+                text-align: center;
+            }
+        }
+    }
+
+    .card-main {
+        width: 85%;
+
+        &__header {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 0.5fr 1fr 1.5fr 3fr;
+        }
+
+        .info {
+            display: flex;
+            align-items: center;
+        }
+
+        .avatar {
+            height: 50px;
+            margin-top: 20px;
+        }
+
+        .name {
+            display: inline-block;
+            margin-left: 10px;
+            margin-top: 20px;
+            font-weight: 500;
+        }
+
+        .created-at {
+            display: inline-block;
+            margin: 20px 10px 10px 10px;
+            color: $Grayish-Blue ;
+        }
+
+        .purple-btn {
+            margin-top: 25px;
+            margin-left: 75%;
+            background-color: transparent;
+            height: 20px;
+            color: $Moderate-blue;
+            font-weight: 500;
+        }
+
+        .delete-btn {
+            background-color: transparent;
+            height: 20px;
+            color: $Soft-Red;
+            font-weight: 500;
+        }
+
+        .purple-btn:hover {
+            cursor: pointer;
+        }
+
+        .reply-btn::before {
+            content: url(../images/icon-reply.svg);
+            margin-right: 5px;
+        }
+
+        .edit-btn {
+            margin-left: 50px;
+        }
+
+        .delete-btn {
+            margin-left: 30px;
+        }
+
+        .edit-btn::before {
+            content: url(../images/icon-edit.svg);
+            margin-right: 5px;
+        }
+
+        .delete-btn:before {
+            content: url(../images/icon-delete.svg);
+            margin-right: 5px;
+        }
+
+        &__comment {
+            margin-top: 5px;
+            padding: 10px;
+            color: $Grayish-Blue
+        }
+    }
+
+    .reply-section {
+        position: relative;
+        margin-left: 184px;
+        display: flex;
+        flex-direction: column;
+        width: 70%;
+
+        .reply-comment {
+            width: 90%;
+        }
+    }
+
+    .reply-section::before {
+        content: '';
+        position: absolute;
+        margin-top: 20px;
+        height: 90%;
+        width: 2px;
+        background-color: hsl(211, 10%, 45%);
+        opacity: 0.3;
+    }
+
+
+    .form-block {
+        margin: 20px auto;
+        display: flex;
+        background-color: $Very-light-gray;
+        border-radius: 10px;
+        width: 80%;
+        height: 130px;
+
+        &__avatar {
+            height: 50px;
+            margin-left: 29px;
+            margin-top: 22px;
+        }
+
+        &__comment {
+            margin: 15px 2px 15px 20px;
+            display: block;
+            width: 68%;
+            height: 70%;
+            padding: 5px;
+            border: 1px solid $Light-gray;
+            border-radius: 10px;
+            resize: none;
+            color: $Grayish-Blue;
+        }
+
+        &__send-btn {
+            margin: 18px auto;
+            height: 40px;
+            width: 80px;
+            background-color: $Moderate-blue;
+            color: $Very-light-gray;
+            border-radius: 10px;
+        }
+
+        &__send-btn:hover {
+            cursor: pointer;
+        }
+    }
+
+}
