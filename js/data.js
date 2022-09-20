@@ -1,4 +1,5 @@
 let currentUser = {
+    'id': 0,
     "image": {
         "png": "./images/avatars/image-juliusomo.png",
         "webp": "./images/avatars/image-juliusomo.webp"

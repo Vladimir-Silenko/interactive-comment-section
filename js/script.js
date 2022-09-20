@@ -1,5 +1,5 @@
-
-function showComment(arr) {
+let modal = document.querySelector('.modal');
+function showComment(arr) { //отрисовка комментариев на странице
   let commentList = ''
   let replyList = ''
   arr = arr.map(({ score, user, createdAt, content, replies }) => {
@@ -54,45 +54,57 @@ function showComment(arr) {
   document.querySelector('.comment-block').innerHTML = commentList
 }
 showComment(comments)
-//-----send comment-----
-document.querySelector('.form-block__send-btn').onclick = () => {
-  let content = document.querySelector('.form-block__comment').value;
-  let comment = document.querySelector('.card').cloneNode(true);
+//==============user actions==============
+function sendComment(parentBlock) {//создаем комментарий текущего пользователя
+  let parent = document.querySelector(parentBlock)
+  let content = document.querySelector('.form-block__comment');
+  let myComment = document.querySelector('.card').cloneNode(true);
   let deleteBtn = document.querySelector('.purple-btn').cloneNode(true)
   deleteBtn.innerText = 'Delete'
   deleteBtn.classList.add('delete-btn')
-  comment.querySelector('.score').innerHTML = 0;
-  comment.querySelector('.avatar').src = currentUser.image.png;
-  comment.querySelector('.name').innerText = currentUser.username;
-  comment.querySelector('.card-main__comment').innerText = content;
-  comment.querySelector('.purple-btn').classList.remove('reply-btn');
-  comment.querySelector('.purple-btn').classList.add('edit-btn');
-  comment.querySelector('.purple-btn').innerText = 'Edit';
-  comment.querySelector('.card-main__header').style = 'display: grid; grid-template-columns: 0.5fr 1fr 1.5fr 2fr 1fr;'
-  document.querySelector('.comment-block').appendChild(comment);
-  comment.querySelector('.card-main__header').appendChild(deleteBtn);
+  myComment.classList.add('my-comment')
+  myComment.querySelector('.score').innerHTML = 0;
+  myComment.querySelector('.avatar').src = currentUser.image.png;
+  myComment.querySelector('.name').innerText = currentUser.username;
+  myComment.querySelector('.card-main__comment').innerText = content.value;
+  myComment.querySelector('.purple-btn').classList.remove('reply-btn');
+  myComment.querySelector('.purple-btn').classList.add('edit-btn');
+  myComment.querySelector('.purple-btn').innerText = 'Edit';
+  myComment.querySelector('.card-main__header').style = 'display: grid; grid-template-columns: 0.5fr 1fr 1.5fr 2fr 1fr;'
+  myComment.querySelector('.card-main__header').appendChild(deleteBtn);
+  parent.appendChild(myComment);
   scoreCounter();
-  document.querySelector('.delete-btn').addEventListener('click', showModal);
 }
-//show modal
-let modal = document.querySelector('.modal')
-function showModal() {
+document.querySelector('.form-block__send-btn').onclick = () => { //отправляем комментарий и присваиваем id
+  sendComment('.comment-block');
+  let a = document.querySelectorAll('.my-comment');
+  for (let i = 0; i < a.length; i++) {
+    a[i].setAttribute('id', i);
+    a[i].querySelector('.delete-btn').setAttribute('id', i);
+    a[i].querySelector('.edit-btn').setAttribute('id', i);
+  };
+  setId()
+}
+function setId() { //присваиваем кнопке подтверждения id комментария который нужно удалить
+  document.querySelectorAll('.delete-btn').forEach(item => {
+    item.addEventListener('click', function () {
+      modal.querySelector('.yes').setAttribute('id', item.id)
+      deleteComment()
+    });
+  });
+};
+//=============deleting comment=============
+function deleteComment() { //выводим модальное окно и подтверждаем/отменяем удаление
   modal.style.display = 'block'
-}
-document.querySelector('.no').onclick = () => {
-  modal.style.display = 'none'
-}
-// -----send reply-----
-function replyTo() {
-  let card = document.querySelectorAll('.card-main__header')
-  card.forEach(item => {
-    const name = '@' + item.querySelector('.name').innerHTML
-    const replyBtn = item.querySelector('.reply-btn')
-    replyBtn.onclick = () => document.querySelector('.form-block__comment').innerHTML = name;
+  modal.querySelector('.yes').addEventListener('click', function () {
+    document.querySelectorAll('.my-comment').forEach(item => {
+      if (this.id === item.id) item.remove()
+    })
+    modal.style.display = 'none'
   })
-}
-
-//-----счетччик рейтинга комментариев-----
+  modal.querySelector('.no').onclick = () => { modal.style.display = 'none' }
+};
+//-----счетчик рейтинга комментариев-----
 function scoreCounter() {
   let scoring = document.querySelectorAll('.card-scoring__counter')
   scoring.forEach(score => {
@@ -114,7 +126,10 @@ function scoreCounter() {
   function render(counter, scoreElement) { scoreElement.innerHTML = counter };
 }
 scoreCounter()
-replyTo()
+
+// ============Редактирование комментариев=============
+
+
 
 
 
