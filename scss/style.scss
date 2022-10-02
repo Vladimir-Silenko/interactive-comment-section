@@ -86,8 +86,13 @@ body {
         max-height: 80%;
         display: flex;
         flex-direction: column;
-        overflow: scroll;
+        overflow: hidden;
+        position: relative;
+
         // flex: 1 1 auto;
+        &__inner {
+            overflow-y: scroll;
+        }
     }
 
     .comment-section {
@@ -270,8 +275,15 @@ body {
             height: 40px;
             width: 80px;
             background-color: $Moderate-blue;
-            color: $Very-light-gray;
             border-radius: 10px;
+
+        }
+
+        &__send-btn-a {
+            width: 100%;
+            height: 100%;
+            color: $Very-light-gray;
+            text-decoration: none;
         }
 
         &__send-btn:hover {

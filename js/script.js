@@ -21,7 +21,7 @@ function showComment(arr) { //отрисовка комментариев на �
               <span class="created-at">${reply.createdAt}</span>
               <button class="purple-btn reply-btn">Reply</button>
             </div>
-            <p class="card-main__comment">${reply.content}</p>
+            <div class="card-main__comment">${reply.content}</div>
           </div>
         </div>
         `
@@ -44,14 +44,14 @@ function showComment(arr) { //отрисовка комментариев на �
                   <span class="created-at">${createdAt}</span>
                   <button class="purple-btn reply-btn">Reply</button>
                 </div>
-                <p class="card-main__comment">${content}</p>
+                <div class="card-main__comment">${content}</div>
               </div>
             </div>
             <div class="reply-section">${replyList}</div>
           </div>`
 
   })
-  document.querySelector('.comment-block').innerHTML = commentList
+  document.querySelector('.comment-block__inner').innerHTML = commentList
 }
 showComment(comments)
 //==============user actions==============
@@ -74,16 +74,19 @@ function sendComment(parentBlock) {//создаем комментарий те�
   myComment.querySelector('.card-main__header').appendChild(deleteBtn);
   parent.appendChild(myComment);
   scoreCounter();
+  editComment()
 }
-document.querySelector('.form-block__send-btn').onclick = () => { //отправляем комментарий и присваиваем id
-  sendComment('.comment-block');
+document.querySelector('.form-block__send-btn').onclick = function () { //отправляем комментарий и присваиваем id
+  sendComment('.comment-block__inner');
   let a = document.querySelectorAll('.my-comment');
   for (let i = 0; i < a.length; i++) {
-    a[i].setAttribute('id', i);
-    a[i].querySelector('.delete-btn').setAttribute('id', i);
-    a[i].querySelector('.edit-btn').setAttribute('id', i);
+    a[i].setAttribute('id', 'comment' + i);
+    a[i].querySelector('.delete-btn').setAttribute('id', 'comment' + i);
+    a[i].querySelector('.edit-btn').setAttribute('id', 'comment' + i);
+    document.querySelector('.form-block__send-btn-a').setAttribute('href', '#comment' + i)
   };
   setId()
+
 }
 function setId() { //присваиваем кнопке подтверждения id комментария который нужно удалить
   document.querySelectorAll('.delete-btn').forEach(item => {
@@ -128,6 +131,27 @@ function scoreCounter() {
 scoreCounter()
 
 // ============Редактирование комментариев=============
+function editComment() {
+  let comments = document.querySelectorAll('.my-comment')
+  let editField = document.querySelector('.form-block__comment').cloneNode(false)
+  let applyChanges = document.querySelector('.form-block__send-btn').cloneNode(true)
+  comments.forEach(item => {
+    item.querySelector('.edit-btn').onclick = () => {
+      item.querySelector('.card-main__comment').appendChild(editField);
+      item.querySelector('.form-block__comment').innerText = item.querySelector('.card-main__comment').innerText;
+      item.querySelector('.card-main__comment').appendChild(applyChanges);
+      item.querySelector('.card-main__comment').style.display = 'flex';
+      applyChanges.onclick = () => {
+        item.querySelector('.card-main__comment').innerHTML = editField.value
+      }
+    }
+
+  })
+}
+// =======отправка ответов=======
+function createReply() {
+
+}
 
 
 
