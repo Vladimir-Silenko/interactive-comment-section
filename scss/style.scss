@@ -83,13 +83,12 @@ body {
     }
 
     .comment-block {
-        max-height: 80%;
+        height: 100%;
         display: flex;
         flex-direction: column;
         overflow: hidden;
         position: relative;
 
-        // flex: 1 1 auto;
         &__inner {
             overflow-y: scroll;
         }

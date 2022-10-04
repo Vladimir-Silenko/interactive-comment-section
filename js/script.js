@@ -1,9 +1,10 @@
-let modal = document.querySelector('.modal');
+const modal = document.querySelector('.modal');
+// const comments = 
 function showComment(arr) { //отрисовка комментариев на странице
   let commentList = ''
   let replyList = ''
   arr = arr.map(({ score, user, createdAt, content, replies }) => {
-    replies = replies.map(reply => {
+    replies.forEach(reply => {
       replyList +=
         `
           <div class="comment-section reply-comment">
@@ -25,6 +26,7 @@ function showComment(arr) { //отрисовка комментариев на �
           </div>
         </div>
         `
+
     })
 
     commentList +=
@@ -52,11 +54,11 @@ function showComment(arr) { //отрисовка комментариев на �
 
   })
   document.querySelector('.comment-block__inner').innerHTML = commentList
+  createReply()
 }
 showComment(comments)
 //==============user actions==============
-function sendComment(parentBlock) {//создаем комментарий текущего пользователя
-  let parent = document.querySelector(parentBlock)
+function createComment() {//создаем комментарий текущего пользователя
   let content = document.querySelector('.form-block__comment');
   let myComment = document.querySelector('.card').cloneNode(true);
   let deleteBtn = document.querySelector('.purple-btn').cloneNode(true)
@@ -72,12 +74,17 @@ function sendComment(parentBlock) {//создаем комментарий те�
   myComment.querySelector('.purple-btn').innerText = 'Edit';
   myComment.querySelector('.card-main__header').style = 'display: grid; grid-template-columns: 0.5fr 1fr 1.5fr 2fr 1fr;'
   myComment.querySelector('.card-main__header').appendChild(deleteBtn);
-  parent.appendChild(myComment);
-  scoreCounter();
-  editComment()
+  return myComment
 }
-document.querySelector('.form-block__send-btn').onclick = function () { //отправляем комментарий и присваиваем id
-  sendComment('.comment-block__inner');
+document.querySelector('.form-block__send-btn').onclick = () => {
+  document.querySelector('.comment-block__inner').appendChild(createComment())
+  scoreCounter();
+  editComment();
+  a1()
+  setId()
+}
+function a1() { //отправляем комментарий и присваиваем id
+  // sendComment('.comment-block__inner');
   let a = document.querySelectorAll('.my-comment');
   for (let i = 0; i < a.length; i++) {
     a[i].setAttribute('id', 'comment' + i);
@@ -85,8 +92,6 @@ document.querySelector('.form-block__send-btn').onclick = function () { //отп
     a[i].querySelector('.edit-btn').setAttribute('id', 'comment' + i);
     document.querySelector('.form-block__send-btn-a').setAttribute('href', '#comment' + i)
   };
-  setId()
-
 }
 function setId() { //присваиваем кнопке подтверждения id комментария который нужно удалить
   document.querySelectorAll('.delete-btn').forEach(item => {
@@ -132,7 +137,7 @@ scoreCounter()
 
 // ============Редактирование комментариев=============
 function editComment() {
-  let comments = document.querySelectorAll('.my-comment')
+  const comments = document.querySelectorAll('.my-comment')
   let editField = document.querySelector('.form-block__comment').cloneNode(false)
   let applyChanges = document.querySelector('.form-block__send-btn').cloneNode(true)
   comments.forEach(item => {
@@ -150,9 +155,29 @@ function editComment() {
 }
 // =======отправка ответов=======
 function createReply() {
-
+  const replyField = document.querySelector('.form-block__comment').cloneNode(false);
+  let reply = document.querySelector('.reply-comment').cloneNode(true)
+  let sendReply = document.querySelector('.form-block__send-btn').cloneNode(true)
+  let deleteBtn = document.querySelector('.purple-btn').cloneNode(true)
+  reply.querySelector('.card-main__comment').innerHTML = '';
+  reply.querySelector('.card-main__comment').appendChild(replyField);
+  reply.querySelector('.card-main__comment').appendChild(sendReply);
+  sendReply.classList.add('send-reply')
+  reply.querySelector('.card-main__comment').style.display = 'flex'
+  reply.querySelector('.score').innerHTML = 0;
+  reply.querySelector('.avatar').src = currentUser.image.png;
+  reply.querySelector('.name').innerText = currentUser.username;
+  deleteBtn.innerText = 'Delete'
+  deleteBtn.classList.add('delete-btn')
+  reply.querySelector('.card-main__header').appendChild(deleteBtn);
+  reply.querySelector('.card-main__header').style = 'display: grid; grid-template-columns: 0.5fr 1fr 1.5fr 2fr 1fr;'
+  scoreCounter()
+  return reply
 }
-
+document.querySelectorAll('.card').forEach(item => {
+  let replySection = item.querySelector('.reply-section')
+  item.querySelector('.reply-btn').onclick = () => replySection.appendChild(createReply())
+})
 
 
 
