@@ -157,12 +157,14 @@ function editComment() {
 function createReply() {
   const replyField = document.querySelector('.form-block__comment').cloneNode(false);
   let reply = document.querySelector('.reply-comment').cloneNode(true)
-  let sendReply = document.querySelector('.form-block__send-btn').cloneNode(true)
+  let sendReply = document.querySelector('.form-block__send-btn').cloneNode(false)
   let deleteBtn = document.querySelector('.purple-btn').cloneNode(true)
   reply.querySelector('.card-main__comment').innerHTML = '';
   reply.querySelector('.card-main__comment').appendChild(replyField);
   reply.querySelector('.card-main__comment').appendChild(sendReply);
   sendReply.classList.add('send-reply')
+  sendReply.innerText = 'Send'
+  sendReply.style.color = 'hsl(228, 33%, 97%)'
   reply.querySelector('.card-main__comment').style.display = 'flex'
   reply.querySelector('.score').innerHTML = 0;
   reply.querySelector('.avatar').src = currentUser.image.png;
@@ -171,12 +173,14 @@ function createReply() {
   deleteBtn.classList.add('delete-btn')
   reply.querySelector('.card-main__header').appendChild(deleteBtn);
   reply.querySelector('.card-main__header').style = 'display: grid; grid-template-columns: 0.5fr 1fr 1.5fr 2fr 1fr;'
-  scoreCounter()
+  sendReply.onclick = () => {
+    reply.querySelector('.card-main__comment').innerHTML = replyField.value
+  }
   return reply
 }
 document.querySelectorAll('.card').forEach(item => {
   let replySection = item.querySelector('.reply-section')
-  item.querySelector('.reply-btn').onclick = () => replySection.appendChild(createReply())
+  item.querySelector('.reply-btn').onclick = () => { replySection.insertBefore(createReply(), item.querySelector('.reply-comment')); scoreCounter() }
 })
 
 
